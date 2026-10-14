@@ -4,7 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Łukasz Ratajczyk — CV</title>
-  <meta name="description" content="Łukasz Ratajczyk — UX, Product Owner, analityk. Curriculum vitae.">
+  <meta name="description" content="Łukasz Ratajczyk — UX, Product Owner, analityk. Curriculum vitae i case studies.">
+  <script>
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("motion");
+      setTimeout(function () { if (!window.__cvReady) document.documentElement.classList.remove("motion"); }, 2500);
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,6 +19,7 @@
 <body>
 
   <nav class="toolbar" aria-label="Akcje">
+    <a class="toolbar__link" href="#case-studies">Case studies</a>
     <button type="button" class="toolbar__print" onclick="window.print()">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
       Pobierz CV (PDF)
@@ -29,19 +36,19 @@
           <feDisplacementMap in="SourceGraphic" in2="noise" scale="5"/>
         </filter>
       </defs>
-      <path filter="url(#brush)" d="M150 52 C 128 28, 70 26, 44 62 C 18 98, 34 152, 82 168 C 128 184, 172 152, 172 104 C 172 84, 164 68, 156 60"
+      <path pathLength="1" filter="url(#brush)" d="M150 52 C 128 28, 70 26, 44 62 C 18 98, 34 152, 82 168 C 128 184, 172 152, 172 104 C 172 84, 164 68, 156 60"
             fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="round"/>
     </svg>
 
     <header class="masthead">
       <div>
-        <h1 class="name">Łukasz Ratajczyk</h1>
-        <p class="role">UX&nbsp;Designer · Product&nbsp;Owner · Analityk</p>
+        <h1 class="name" data-type>Łukasz Ratajczyk</h1>
+        <p class="role" data-reveal="intro">UX&nbsp;Designer · Product&nbsp;Owner · Analityk</p>
       </div>
       <div class="hanko" aria-hidden="true"><span>Ł</span><span>R</span></div>
     </header>
 
-    <ul class="contact">
+    <ul class="contact" data-reveal="intro">
       <li><a href="mailto:lratajczyk@gmail.com">lratajczyk@gmail.com</a></li>
       <li><a href="https://www.linkedin.com/in/">linkedin.com/in/[profil]</a></li>
       <li>[Miasto], Polska</li>
@@ -51,6 +58,47 @@
       <h2 class="label">O mnie</h2>
       <div class="content">
         <p class="lead">[Dwa, trzy zdania o tym, kim jesteś i jaką wartość wnosisz. Np.: Łączę projektowanie doświadczeń z odpowiedzialnością za produkt — od badań z użytkownikami, przez backlog, po mierzalny wynik biznesowy.]</p>
+      </div>
+    </section>
+
+    <section class="block" id="case-studies">
+      <h2 class="label">Case studies</h2>
+      <div class="content">
+        <ol class="cases">
+          <li>
+            <a class="case" href="case-studies/projekt-1.html">
+              <span class="case__no">01</span>
+              <span class="case__body">
+                <span class="case__title">[Tytuł projektu]</span>
+                <span class="case__summary">[Jedno zdanie: problem → co zrobiłeś → wynik]</span>
+                <span class="case__meta">[Firma] · [Twoja rola] · [rok]</span>
+              </span>
+              <span class="case__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a class="case" href="case-studies/projekt-1.html">
+              <span class="case__no">02</span>
+              <span class="case__body">
+                <span class="case__title">[Tytuł projektu]</span>
+                <span class="case__summary">[Jedno zdanie: problem → co zrobiłeś → wynik]</span>
+                <span class="case__meta">[Firma] · [Twoja rola] · [rok]</span>
+              </span>
+              <span class="case__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a class="case" href="case-studies/projekt-1.html">
+              <span class="case__no">03</span>
+              <span class="case__body">
+                <span class="case__title">[Tytuł projektu]</span>
+                <span class="case__summary">[Jedno zdanie: problem → co zrobiłeś → wynik]</span>
+                <span class="case__meta">[Firma] · [Twoja rola] · [rok]</span>
+              </span>
+              <span class="case__arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -131,9 +179,12 @@
     </section>
 
     <footer class="colophon">
+      <p class="print-only">Case studies i portfolio: lratajczyk.github.io/LukaszRatajczykCV</p>
       <p class="consent">Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji zgodnie z RODO.</p>
     </footer>
 
   </main>
+
+  <script src="main.js" defer></script>
 </body>
 </html>

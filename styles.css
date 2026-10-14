@@ -41,6 +41,15 @@ a:hover { border-color: var(--shu); }
   top: 20px;
   right: 24px;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.toolbar__link {
+  font-size: 13px;
+  letter-spacing: .08em;
+  border-bottom-color: transparent;
 }
 
 .toolbar__print {
@@ -236,14 +245,241 @@ a:hover { border-color: var(--shu); }
 }
 .consent { margin: 0; font-size: 11px; line-height: 1.6; color: var(--ink-faint); }
 
+
+/* ── Case studies (lista) ──────────────────── */
+
+.cases { margin: 0; padding: 0; list-style: none; }
+.cases > li + li { border-top: 1px solid var(--rule); }
+
+.case {
+  display: grid;
+  grid-template-columns: 44px 1fr 24px;
+  gap: 16px;
+  align-items: baseline;
+  padding: 20px 0;
+  border: 0;
+}
+.cases > li:first-child .case { padding-top: 0; }
+
+.case__no {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--ink-faint);
+  transition: color .4s;
+}
+.case__body { display: block; }
+.case__title {
+  display: inline;
+  font-size: 18px;
+  font-weight: 700;
+  /* pociągnięcie pędzla pod tytułem przy najechaniu */
+  background: linear-gradient(var(--shu), var(--shu)) no-repeat 0 100% / 0 1px;
+  transition: background-size .6s cubic-bezier(.2, .6, .2, 1);
+}
+.case__summary { display: block; margin-top: 4px; font-size: 15px; }
+.case__meta {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: .12em;
+  color: var(--ink-faint);
+}
+.case__arrow {
+  color: var(--ink-faint);
+  transform: translateX(-6px);
+  opacity: 0;
+  transition: transform .4s, opacity .4s, color .4s;
+}
+.case:hover .case__title,
+.case:focus-visible .case__title { background-size: 100% 1px; }
+.case:hover .case__no { color: var(--shu); }
+.case:hover .case__arrow,
+.case:focus-visible .case__arrow { opacity: 1; transform: none; color: var(--shu); }
+.case:focus-visible { outline: 2px solid var(--shu); outline-offset: 6px; }
+
+/* ── Strona case study ─────────────────────── */
+
+.back {
+  display: inline-block;
+  margin-bottom: 56px;
+  font-size: 13px;
+  letter-spacing: .12em;
+  color: var(--ink-soft);
+  border-bottom-color: transparent;
+}
+.back:hover { color: var(--ink); }
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 12px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--shu);
+}
+
+.cs-title {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 42px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: .02em;
+}
+
+.cs-lead {
+  margin: 20px 0 0;
+  max-width: 34em;
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin: 44px 0 0;
+  padding: 22px 0 40px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.facts dt {
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.facts dd { margin: 4px 0 0; font-size: 15px; }
+
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+.steps > li { counter-increment: step; position: relative; padding-left: 44px; }
+.steps > li + li { margin-top: 18px; }
+.steps > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.steps h3 { margin: 0; font-size: 16px; font-weight: 700; }
+.steps p { font-size: 15px; }
+
+.figure { margin: 0; }
+.figure__frame {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  background: var(--washi);
+  border: 1px solid var(--rule);
+  color: var(--ink-faint);
+  font-size: 13px;
+  letter-spacing: .1em;
+}
+.figure__frame img { width: 100%; height: 100%; object-fit: cover; }
+.figure figcaption { margin-top: 10px; font-size: 13px; color: var(--ink-faint); }
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.metrics strong {
+  display: block;
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.1;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.metrics span { display: block; margin-top: 6px; font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-size: 14px;
+}
+.pager a { border-bottom-color: transparent; }
+.pager a:hover { color: var(--shu); }
+
+.print-only { display: none; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─────────────────────────────────────────────
+   Ruch — tylko gdy JS i brak „ogranicz ruch”
+   ───────────────────────────────────────────── */
+
+/* maszyna do pisania */
+.motion [data-type] { visibility: hidden; }
+.motion [data-type].typing { visibility: visible; }
+.ch { opacity: 0; transition: opacity .16s ease-out; }
+.ch.on { opacity: 1; }
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: .82em;
+  margin: 0 -4px 0 2px;
+  vertical-align: -.04em;
+  background: var(--shu);
+}
+.caret--idle { animation: blink 1.05s steps(1) 3, caret-out .8s ease 3.15s forwards; }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes caret-out { to { opacity: 0; } }
+
+/* łagodne pojawianie się */
+.motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 1.1s cubic-bezier(.2, .6, .2, 1), transform 1.1s cubic-bezier(.2, .6, .2, 1);
+  transition-delay: var(--d, 0s);
+}
+.motion [data-reveal].in { opacity: 1; transform: none; }
+
+/* kreska pod etykietą sekcji rysuje się po wejściu */
+.motion .block .label::after { width: 0; transition: width .9s cubic-bezier(.2, .6, .2, 1) .3s; }
+.motion .block.in .label::after { width: 22px; }
+
+/* ensō kreślone pędzlem */
+.motion .enso path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.motion.drawing .enso path { animation: draw 2.6s cubic-bezier(.6, .1, .3, 1) .2s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+/* przyłożenie pieczęci */
+.motion .hanko { opacity: 0; transform: rotate(-3deg) scale(1.35); }
+.motion.stamped .hanko { animation: stamp .45s cubic-bezier(.3, 1.4, .5, 1) forwards; }
+@keyframes stamp {
+  0%   { opacity: 0;  transform: rotate(-3deg) scale(1.35); }
+  60%  { opacity: .95; }
+  100% { opacity: .9; transform: rotate(-3deg) scale(1); }
+}
+
 /* ── Telefon ───────────────────────────────── */
 
 @media (max-width: 720px) {
   .sheet { margin: 0; padding: 72px 16px 48px; box-shadow: none; }
-  .toolbar { top: 12px; right: 16px; }
+  .toolbar { position: absolute; top: 12px; right: 16px; }
   .enso { width: 200px; height: 200px; top: -30px; right: -50px; }
   .block { grid-template-columns: 1fr; gap: 14px; padding-top: 36px; }
   .skills { grid-template-columns: 1fr; gap: 18px; }
+  .toolbar { gap: 14px; }
+  .case { grid-template-columns: 34px 1fr; }
+  .case__arrow { display: none; }
+  .facts { grid-template-columns: 1fr 1fr; }
+  .metrics { grid-template-columns: 1fr; gap: 18px; }
+  .back { margin-bottom: 40px; }
 }
 
 /* ─────────────────────────────────────────────
@@ -291,4 +527,23 @@ a:hover { border-color: var(--shu); }
 
   .colophon { margin-top: 22pt; padding-top: 10pt; }
   .consent { font-size: 7.5pt; }
+
+  /* animacje nigdy nie ukrywają treści na papierze */
+  [data-reveal], [data-type], .ch, .hanko { opacity: 1 !important; transform: none !important; visibility: visible !important; transition: none !important; animation: none !important; }
+  .hanko { opacity: .9 !important; transform: rotate(-3deg) !important; }
+  .caret, .back, .pager { display: none !important; }
+  .block .label::after { width: 22px !important; }
+
+  /* CV na papierze: case studies tylko jako link w stopce */
+  #case-studies { display: none; }
+  .print-only { display: block; margin: 0 0 6pt; font-size: 8.5pt; color: var(--ink-soft); }
+
+  /* strona case study w druku */
+  .cs-title { font-size: 22pt; }
+  .cs-lead { font-size: 10.5pt; margin-top: 10pt; }
+  .facts { margin-top: 18pt; padding: 10pt 0 14pt; }
+  .facts dd { font-size: 9.5pt; }
+  .steps p, .metrics span { font-size: 9.5pt; }
+  .metrics strong { font-size: 22pt; }
+  .figure { break-inside: avoid; }
 }
