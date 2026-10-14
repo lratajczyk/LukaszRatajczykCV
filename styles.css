@@ -3,8 +3,9 @@
    ───────────────────────────────────────────── */
 
 :root {
-  --washi: #f3eee3;      /* tło za kartką */
-  --paper: #fbf8f1;      /* kartka */
+  --washi: #f3eee2;      /* ecru — tło całej strony */
+  --paper: #f3eee2;
+  --tint: #ebe4d4;       /* odrobinę ciemniejsze ecru (ramki, placeholdery) */
   --ink: #23211d;        /* sumi — tusz */
   --ink-soft: #5f5a51;   /* rozwodniony tusz */
   --ink-faint: #a49d90;  /* ślad pędzla */
@@ -40,22 +41,23 @@ a:hover { border-color: var(--shu); }
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(243, 238, 227, .82);
+  background: rgba(243, 238, 226, .86);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: border-color .4s, background .4s;
 }
-.topbar.is-scrolled { border-bottom-color: var(--rule); background: rgba(243, 238, 227, .97); }
+.topbar.is-scrolled { border-bottom-color: var(--rule); background: rgba(243, 238, 226, .97); }
 
 .topbar__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  max-width: 820px;
+  max-width: 1012px;
   height: 60px;
   margin: 0 auto;
+  padding: 0 96px;
 }
 
 .topbar__brand {
@@ -114,20 +116,19 @@ a:hover { border-color: var(--shu); }
 
 .sheet {
   position: relative;
-  max-width: 820px;
-  margin: 24px auto 96px;
-  padding: 88px 96px 72px;
-  background: var(--paper);
-  box-shadow: 0 1px 2px rgba(60, 50, 30, .06), 0 12px 40px -12px rgba(60, 50, 30, .18);
-  overflow: hidden;
+  max-width: 1012px;
+  margin: 0 auto;
+  padding: 72px 96px 96px;
+  overflow-x: clip;
 }
 
 .enso {
   position: absolute;
-  top: -38px;
-  right: -46px;
-  width: 300px;
-  height: 300px;
+  /* okrąg obejmuje pieczęć */
+  top: -18px;
+  right: 0;
+  width: 244px;
+  height: 244px;
   color: var(--ink);
   opacity: .055;
   pointer-events: none;
@@ -410,7 +411,7 @@ a:hover { border-color: var(--shu); }
   display: grid;
   place-items: center;
   aspect-ratio: 16 / 10;
-  background: var(--washi);
+  background: var(--tint);
   border: 1px solid var(--rule);
   color: var(--ink-faint);
   font-size: 13px;
@@ -508,16 +509,22 @@ a:hover { border-color: var(--shu); }
 
 /* ── Telefon ───────────────────────────────── */
 
+@media (max-width: 900px) {
+  .sheet { padding-left: 56px; padding-right: 56px; }
+  .enso { right: -40px; }
+  .topbar__inner { padding: 0 56px; }
+}
+
 @media (max-width: 720px) {
-  .sheet { margin: 0; padding: 40px 16px 48px; box-shadow: none; }
-  .topbar__inner { height: 54px; padding: 0 16px; }
+  .sheet { padding: 40px 24px 56px; }
+  .topbar__inner { height: 54px; padding: 0 24px; }
   .topbar__long { display: none; }
   .topbar__nav { gap: 16px; }
 }
 
 @media (max-width: 480px) {
   .topbar__name { display: none; }
-  .enso { width: 200px; height: 200px; top: -30px; right: -50px; }
+  .enso { width: 200px; height: 200px; top: -28px; right: -50px; }
   .block { grid-template-columns: 1fr; gap: 14px; padding-top: 36px; }
   .skills { grid-template-columns: 1fr; gap: 18px; }
   .case { grid-template-columns: 34px 1fr; }
