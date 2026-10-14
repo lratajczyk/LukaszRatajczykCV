@@ -34,48 +34,88 @@ body {
 a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule); transition: border-color .2s; }
 a:hover { border-color: var(--shu); }
 
-/* ── Pasek akcji ───────────────────────────── */
+/* ── Przyklejony nagłówek ──────────────────── */
 
-.toolbar {
-  position: fixed;
-  top: 20px;
-  right: 24px;
-  z-index: 10;
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(243, 238, 227, .82);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .4s, background .4s;
+}
+.topbar.is-scrolled { border-bottom-color: var(--rule); background: rgba(243, 238, 227, .97); }
+
+.topbar__inner {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 820px;
+  height: 60px;
+  margin: 0 auto;
 }
 
-.toolbar__link {
+.topbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  font-size: 14px;
+  letter-spacing: .08em;
+}
+.topbar__seal {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--shu);
+  border-radius: 3px;
+  color: var(--shu);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
+  transform: rotate(-3deg);
+}
+/* nazwisko w pasku pojawia się dopiero, gdy duży nagłówek zniknie z widoku */
+.topbar__name { opacity: 0; transform: translateY(4px); transition: opacity .5s, transform .5s; }
+.topbar.show-name .topbar__name,
+.topbar--always .topbar__name { opacity: 1; transform: none; }
+
+.topbar__nav { display: flex; align-items: center; gap: 22px; }
+
+.topbar__link {
   font-size: 13px;
   letter-spacing: .08em;
   border-bottom-color: transparent;
 }
 
-.toolbar__print {
+.topbar__print {
   display: inline-flex;
   align-items: center;
   gap: .5em;
-  padding: .55em 1.1em;
+  padding: .6em 1.1em;
   font: 500 13px/1 var(--serif);
   letter-spacing: .08em;
-  color: var(--ink);
-  background: var(--paper);
+  color: var(--paper);
+  background: var(--ink);
   border: 1px solid var(--ink);
   border-radius: 0;
   cursor: pointer;
-  transition: background .2s, color .2s;
+  transition: background .25s, border-color .25s;
 }
-.toolbar__print svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.4; }
-.toolbar__print:hover { background: var(--ink); color: var(--paper); }
-.toolbar__print:focus-visible { outline: 2px solid var(--shu); outline-offset: 3px; }
+.topbar__print svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+.topbar__print:hover { background: var(--shu); border-color: var(--shu); }
+.topbar__print:focus-visible { outline: 2px solid var(--shu); outline-offset: 3px; }
 
 /* ── Kartka ────────────────────────────────── */
 
 .sheet {
   position: relative;
   max-width: 820px;
-  margin: 72px auto 96px;
+  margin: 24px auto 96px;
   padding: 88px 96px 72px;
   background: var(--paper);
   box-shadow: 0 1px 2px rgba(60, 50, 30, .06), 0 12px 40px -12px rgba(60, 50, 30, .18);
@@ -469,12 +509,17 @@ a:hover { border-color: var(--shu); }
 /* ── Telefon ───────────────────────────────── */
 
 @media (max-width: 720px) {
-  .sheet { margin: 0; padding: 72px 16px 48px; box-shadow: none; }
-  .toolbar { position: absolute; top: 12px; right: 16px; }
+  .sheet { margin: 0; padding: 40px 16px 48px; box-shadow: none; }
+  .topbar__inner { height: 54px; padding: 0 16px; }
+  .topbar__long { display: none; }
+  .topbar__nav { gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .topbar__name { display: none; }
   .enso { width: 200px; height: 200px; top: -30px; right: -50px; }
   .block { grid-template-columns: 1fr; gap: 14px; padding-top: 36px; }
   .skills { grid-template-columns: 1fr; gap: 18px; }
-  .toolbar { gap: 14px; }
   .case { grid-template-columns: 34px 1fr; }
   .case__arrow { display: none; }
   .facts { grid-template-columns: 1fr 1fr; }
@@ -493,7 +538,7 @@ a:hover { border-color: var(--shu); }
 
 @media print {
   body { background: #fff; font-size: 10pt; line-height: 1.55; }
-  .toolbar, .enso { display: none; }
+  .topbar, .enso { display: none !important; }
 
   .sheet {
     max-width: none;
@@ -536,7 +581,11 @@ a:hover { border-color: var(--shu); }
 
   /* CV na papierze: case studies tylko jako link w stopce */
   #case-studies { display: none; }
-  .print-only { display: block; margin: 0 0 6pt; font-size: 8.5pt; color: var(--ink-soft); }
+  .print-only { display: block; }
+  li.print-only { display: list-item; }
+  .colophon .print-only { margin: 0 0 6pt; font-size: 8.5pt; color: var(--ink-soft); }
+  /* linki w PDF są klikalne — w druku delikatnie zaznaczone cynobrem */
+  .print-only a { color: var(--shu); border-bottom: .5pt solid var(--shu); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
   /* strona case study w druku */
   .cs-title { font-size: 22pt; }

@@ -3,6 +3,30 @@
 (function () {
   window.__cvReady = true;
   var root = document.documentElement;
+
+  /* ── Przycisk druku CV ── */
+  document.querySelectorAll("[data-print]").forEach(function (btn) {
+    btn.addEventListener("click", function () { window.print(); });
+  });
+  // z podstrony case study: ../index.html?druk otwiera od razu okno druku CV
+  if (/[?&]druk\b/.test(location.search)) {
+    history.replaceState(null, "", location.pathname + location.hash);
+    var fonts = document.fonts ? document.fonts.ready : Promise.resolve();
+    fonts.then(function () { setTimeout(function () { window.print(); }, 300); });
+  }
+
+  /* ── Pasek u góry: linia po przewinięciu, nazwisko gdy nagłówek zniknie ── */
+  var bar = document.querySelector(".topbar");
+  var masthead = document.querySelector(".masthead");
+  if (bar) {
+    var onScroll = function () {
+      bar.classList.toggle("is-scrolled", window.scrollY > 8);
+      if (masthead) bar.classList.toggle("show-name", masthead.getBoundingClientRect().bottom < 60);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
   if (!root.classList.contains("motion")) return;
 
   /* ── Maszyna do pisania ── */

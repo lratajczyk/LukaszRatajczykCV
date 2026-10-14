@@ -18,15 +18,23 @@
 </head>
 <body>
 
-  <nav class="toolbar" aria-label="Akcje">
-    <a class="toolbar__link" href="#case-studies">Case studies</a>
-    <button type="button" class="toolbar__print" onclick="window.print()">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
-      Pobierz CV (PDF)
-    </button>
-  </nav>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="topbar__brand" href="#top" aria-label="Łukasz Ratajczyk — na górę strony">
+        <span class="topbar__seal" aria-hidden="true">ŁR</span>
+        <span class="topbar__name">Łukasz Ratajczyk</span>
+      </a>
+      <nav class="topbar__nav" aria-label="Akcje">
+        <a class="topbar__link" href="#case-studies">Case studies</a>
+        <button type="button" class="topbar__print" data-print>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+          <span>Pobierz CV<span class="topbar__long"> (PDF)</span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
-  <main class="sheet">
+  <main class="sheet" id="top">
 
     <!-- Ensō: pędzlowy okrąg, tylko dekoracja -->
     <svg class="enso" viewBox="0 0 200 200" aria-hidden="true">
@@ -52,6 +60,7 @@
       <li><a href="mailto:lratajczyk@gmail.com">lratajczyk@gmail.com</a></li>
       <li><a href="https://www.linkedin.com/in/">linkedin.com/in/[profil]</a></li>
       <li>[Miasto], Polska</li>
+      <li class="print-only"><a href="https://lratajczyk.github.io/LukaszRatajczykCV/">Portfolio i case studies ↗</a></li>
     </ul>
 
     <section class="block">
@@ -179,7 +188,7 @@
     </section>
 
     <footer class="colophon">
-      <p class="print-only">Case studies i portfolio: lratajczyk.github.io/LukaszRatajczykCV</p>
+      <p class="print-only">Pełna wersja z case studies: <a href="https://lratajczyk.github.io/LukaszRatajczykCV/">lratajczyk.github.io/LukaszRatajczykCV</a></p>
       <p class="consent">Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji zgodnie z RODO.</p>
     </footer>
 
