@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Łukasz Ratajczyk — CV</title>
+  <meta name="description" content="Łukasz Ratajczyk — UX, Product Owner, analityk. Curriculum vitae.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="toolbar" aria-label="Akcje">
+    <button type="button" class="toolbar__print" onclick="window.print()">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
+      Pobierz CV (PDF)
+    </button>
+  </nav>
+
+  <main class="sheet">
+
+    <!-- Ensō: pędzlowy okrąg, tylko dekoracja -->
+    <svg class="enso" viewBox="0 0 200 200" aria-hidden="true">
+      <defs>
+        <filter id="brush" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="noise"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="5"/>
+        </filter>
+      </defs>
+      <path filter="url(#brush)" d="M150 52 C 128 28, 70 26, 44 62 C 18 98, 34 152, 82 168 C 128 184, 172 152, 172 104 C 172 84, 164 68, 156 60"
+            fill="none" stroke="currentColor" stroke-width="11" stroke-linecap="round"/>
+    </svg>
+
+    <header class="masthead">
+      <div>
+        <h1 class="name">Łukasz Ratajczyk</h1>
+        <p class="role">UX&nbsp;Designer · Product&nbsp;Owner · Analityk</p>
+      </div>
+      <div class="hanko" aria-hidden="true"><span>Ł</span><span>R</span></div>
+    </header>
+
+    <ul class="contact">
+      <li><a href="mailto:lratajczyk@gmail.com">lratajczyk@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/">linkedin.com/in/[profil]</a></li>
+      <li>[Miasto], Polska</li>
+    </ul>
+
+    <section class="block">
+      <h2 class="label">O mnie</h2>
+      <div class="content">
+        <p class="lead">[Dwa, trzy zdania o tym, kim jesteś i jaką wartość wnosisz. Np.: Łączę projektowanie doświadczeń z odpowiedzialnością za produkt — od badań z użytkownikami, przez backlog, po mierzalny wynik biznesowy.]</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="label">Doświadczenie</h2>
+      <div class="content">
+
+        <article class="job">
+          <p class="job__when">2022 — obecnie</p>
+          <h3 class="job__title">[Stanowisko]</h3>
+          <p class="job__org">[Firma] · [Miasto / zdalnie]</p>
+          <ul class="job__points">
+            <li>[Efekt z liczbą — np. skróciłem czas onboardingu o 40%]</li>
+            <li>[Co zbudowałeś / za co odpowiadałeś]</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <p class="job__when">2018 — 2022</p>
+          <h3 class="job__title">[Stanowisko]</h3>
+          <p class="job__org">[Firma] · [Miasto]</p>
+          <ul class="job__points">
+            <li>[Efekt z liczbą]</li>
+            <li>[Zakres odpowiedzialności]</li>
+          </ul>
+        </article>
+
+        <article class="job">
+          <p class="job__when">2014 — 2018</p>
+          <h3 class="job__title">[Stanowisko]</h3>
+          <p class="job__org">[Firma] · [Miasto]</p>
+          <ul class="job__points">
+            <li>[Efekt z liczbą]</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="label">Kompetencje</h2>
+      <div class="content skills">
+        <div>
+          <h3>UX</h3>
+          <p>Badania z użytkownikami · Architektura informacji · Prototypowanie · Testy użyteczności · Design systems</p>
+        </div>
+        <div>
+          <h3>Produkt</h3>
+          <p>Discovery · Zarządzanie backlogiem · Roadmapy · Scrum · Priorytetyzacja</p>
+        </div>
+        <div>
+          <h3>Analiza</h3>
+          <p>Wymagania biznesowe · Modelowanie procesów · Analityka produktowa · SQL</p>
+        </div>
+        <div>
+          <h3>Narzędzia</h3>
+          <p>Figma · Jira · Confluence · Miro · [inne]</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="label">Wykształcenie</h2>
+      <div class="content">
+        <article class="job">
+          <p class="job__when">[rok — rok]</p>
+          <h3 class="job__title">[Kierunek]</h3>
+          <p class="job__org">[Uczelnia]</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="label">Języki</h2>
+      <div class="content">
+        <p>Polski — ojczysty · Angielski — [poziom]</p>
+      </div>
+    </section>
+
+    <footer class="colophon">
+      <p class="consent">Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji zgodnie z RODO.</p>
+    </footer>
+
+  </main>
+</body>
+</html>
